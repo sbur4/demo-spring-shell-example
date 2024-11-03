@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '2.7.18'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+wrapper {
+    gradleVersion = '8.9'
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+application {
+    mainClass = 'org.example.SpringBootDemoApplication'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    gradlePluginPortal()
+}
+
+dependencies {
+    // *** slf4j ***
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: '2.7.18'
+    // *** lombok ***
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+
+    // shell
+    // https://mvnrepository.com/artifact/org.springframework.shell/spring-shell-starter
+    implementation group: 'org.springframework.shell', name: 'spring-shell-starter', version: '2.1.15'
+//    implementation group: 'org.springframework.shell', name: 'spring-shell-starter', version: '3.1.12'
+
+    // https://mvnrepository.com/artifact/org.springframework.shell/spring-shell-dependencies
+//    implementation group: 'org.springframework.shell', name: 'spring-shell-dependencies', version: '3.1.12', ext: 'pom'
+//    implementation group: 'org.springframework.shell', name: 'spring-shell-dependencies', version: '2.1.15', ext: 'pom'
+// https://mvnrepository.com/artifact/org.springframework.shell/spring-shell-core
+//    runtimeOnly group: 'org.springframework.shell', name: 'spring-shell-core', version: '2.1.15'
+// https://mvnrepository.com/artifact/org.springframework.shell/spring-shell-standard-commands
+//    implementation group: 'org.springframework.shell', name: 'spring-shell-standard-commands', version: '2.1.15'
+
+    //
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
